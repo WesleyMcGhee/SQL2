@@ -75,8 +75,7 @@ SET support_rep_id = 4
 WHERE customer_id = 57;
 
 UPDATE track
-SET composer = 'The darkness around us'
-	  
+SET composer = 'The darkness around us'  
 WHERE composer is null and track_id  IN 
 (SELECT track_id FROM playlist_track WHERE playlist_id IN 
    (SELECT playlist_id FROM playlist WHERE playlist_id = 17));
@@ -128,3 +127,43 @@ GROUP BY genre_id;
 
 SELECT COUNT(*), artist_id FROM album 
 GROUP BY artist_id;
+
+-- CREATE TABLE users (
+--   id SERIAL PRIMARY KEY,
+--   name VARCHAR(255),
+--   email VARCHAR(255));
+
+-- CREATE TABLE products (
+--   id SERIAL PRIMARY KEY,
+--   name VARCHAR(255),
+--   price INT);
+  
+-- CREATE TABLE cart (
+--   id SERIAL PRIMARY KEY,
+--   user_id INT REFERENCES users(id),
+--   product_id INT REFERENCES products(id),
+-- 	quantity INT
+-- );
+
+
+-- INSERT INTO users (name, email)
+-- VALUES ('Jeff John', 'jeffjohn@hotmail.com'), ('Sally Sue', 'sallysue@gmail.com'), ('Bonnie Clyde', 'bonnieclyde@aol.com');
+
+-- INSERT INTO products (name, price)
+-- VALUES ('Candy', 5),
+-- ('Meat', 10),
+-- ('Vegetable', 7),
+-- ('Fruit', 7),
+-- ('Chips', 3);
+
+-- SELECT * FROM users;
+-- SELECT * FROM products;
+
+
+-- INSERT INTO cart (product_id, user_id, quantity)
+-- VALUES (2, 1, 5),
+-- (3, 1, 2),
+-- (1, 2, 3),
+-- (5, 2, 2),
+-- (4, 3, 2), 
+-- (3, 3, 4);
