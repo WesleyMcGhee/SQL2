@@ -128,42 +128,56 @@ GROUP BY genre_id;
 SELECT COUNT(*), artist_id FROM album 
 GROUP BY artist_id;
 
--- CREATE TABLE users (
---   id SERIAL PRIMARY KEY,
---   name VARCHAR(255),
---   email VARCHAR(255));
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255));
 
--- CREATE TABLE products (
---   id SERIAL PRIMARY KEY,
---   name VARCHAR(255),
---   price INT);
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  price INT);
   
--- CREATE TABLE cart (
---   id SERIAL PRIMARY KEY,
---   user_id INT REFERENCES users(id),
---   product_id INT REFERENCES products(id),
--- 	quantity INT
--- );
+CREATE TABLE cart (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  product_id INT REFERENCES products(id),
+	quantity INT
+);
 
 
--- INSERT INTO users (name, email)
--- VALUES ('Jeff John', 'jeffjohn@hotmail.com'), ('Sally Sue', 'sallysue@gmail.com'), ('Bonnie Clyde', 'bonnieclyde@aol.com');
+INSERT INTO users (name, email)
+VALUES ('Jeff John', 'jeffjohn@hotmail.com'), ('Sally Sue', 'sallysue@gmail.com'), ('Bonnie Clyde', 'bonnieclyde@aol.com');
 
--- INSERT INTO products (name, price)
--- VALUES ('Candy', 5),
--- ('Meat', 10),
--- ('Vegetable', 7),
--- ('Fruit', 7),
--- ('Chips', 3);
+INSERT INTO products (name, price)
+VALUES ('Candy', 5),
+('Meat', 10),
+('Vegetable', 7),
+('Fruit', 7),
+('Chips', 3);
 
--- SELECT * FROM users;
--- SELECT * FROM products;
+SELECT * FROM users;
+SELECT * FROM products;
 
 
--- INSERT INTO cart (product_id, user_id, quantity)
--- VALUES (2, 1, 5),
--- (3, 1, 2),
--- (1, 2, 3),
--- (5, 2, 2),
--- (4, 3, 2), 
--- (3, 3, 4);
+INSERT INTO cart (product_id, user_id, quantity)
+VALUES (2, 1, 5),
+(3, 1, 2),
+(1, 2, 3),
+(5, 2, 2),
+(4, 3, 2), 
+(3, 3, 4);
+
+SELECT * FROM cart
+WHERE user_id = 1;
+
+SELECT c.id, u.id, u.name, p.id, p.name FROM cart c
+JOIN users u ON c.user_id = u.id
+JOIN products p ON c.product_id = p.id;
+
+SELECT user_id, price * quantity AS total FROM products p
+JOIN cart c ON product_id = p.id
+
+UPDATE cart
+SET quantity = 5
+WHERE user_id = 2;
